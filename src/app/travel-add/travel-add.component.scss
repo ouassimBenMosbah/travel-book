@@ -1,0 +1,25 @@
+#travelAddWrapper{
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.little {
+  width: 15%;
+  margin-right: 2%;
+}
+
+.medium {
+  width: 45%;
+
+  textarea{
+    resize: none;
+  }
+}
+
+mat-divider {
+  margin-bottom: 2%;
+}
+
+.flex-filler{
+  flex: 1;
+}

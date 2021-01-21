@@ -1,0 +1,44 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div id='travelDetailsWrapper' *ngIf="!loading">
+  <div fxLayout='row' fxLayoutGap='80%'>
+    <h2>
+      Détails d'un voyage
+    </h2>
+    <button mat-flat-button color='primary' (click)='returnToList()'>Retour</button>
+  </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{travel.countryName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance='outline' class='medium'>
+        <mat-label>
+          Description
+        </mat-label>
+        <textarea matInput readonly rows='10'>{{travel.description}}</textarea>
+      </mat-form-field>
+      <mat-form-field appearance='outline'>
+        <mat-label>Opinion</mat-label>
+        <input matInput readonly type="text" [value]='travel.opinion'>
+      </mat-form-field>
+      <div class="additionnalInfos" *ngIf="travel.startingTripDate && travel.endingTripDate && travel.favoritePlate">
+        <mat-form-field appearance='outline'>
+          <mat-label>Date de début</mat-label>
+          <input matInput readonly [matDatepicker]="picker1" [value]='travel.startingTripDate'>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance='outline'>
+          <mat-label>Date de début</mat-label>
+          <input matInput readonly [matDatepicker]="picker2" [value]='travel.endingTripDate'>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance='outline'>
+          <mat-label>Plat favoris</mat-label>
+          <input matInput readonly type="text" [value]='travel.favoritePlate'>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,46 @@
+#travelListWrapper{
+  padding-left: 5%;
+  padding-right: 5%;
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .flex-filler{
+      flex: 1;
+    }
+  }
+
+  mat-card{
+    .green{
+      color: green;
+    }
+
+    .red{
+      color: red;
+    }
+
+    .blue{
+      color: blue;
+    }
+
+    mat-card-title{
+      font-weight: bold;
+    }
+
+    mat-card-actions{
+      display:flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    margin-bottom: 0.5%;
+  }
+
+  .travel:not(:first-child){
+    padding-top: 1%;
+  }
+}
+

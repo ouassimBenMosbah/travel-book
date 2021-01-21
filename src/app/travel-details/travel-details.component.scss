@@ -1,0 +1,21 @@
+#travelDetailsWrapper{
+  padding-left: 2%;
+  padding-right: 2%;
+  margin:2%;
+}
+
+.medium{
+  width: 45%;
+
+  textarea{
+    resize: none;
+  }
+}
+
+mat-form-field {
+  margin-right: 2%;
+}
+
+mat-divider {
+  margin-bottom: 2%;
+}
