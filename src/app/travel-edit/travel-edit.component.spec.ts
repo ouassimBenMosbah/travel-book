@@ -8,9 +8,8 @@ describe('TravelEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TravelEditComponent ]
-    })
-    .compileComponents();
+      declarations: [TravelEditComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

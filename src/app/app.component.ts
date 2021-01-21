@@ -8,5 +8,4 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 })
 export class AppComponent {
   title = 'Carnet de Voyages';
-
 }

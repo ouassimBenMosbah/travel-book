@@ -1,48 +1,70 @@
 <div id="travelAddWrapper">
-  <div fxLayout='row' fxLayoutGap='80%' fxLayoutAlign="flex-start">
+  <div fxLayout="row" fxLayoutGap="80%" fxLayoutAlign="flex-start">
     <h2>Ajout de voyage</h2>
-    <button mat-flat-button color='primary' (click)='returnToList()'>Retour</button>
+    <button mat-flat-button color="primary" (click)="returnToList()">
+      Retour
+    </button>
   </div>
 
   <form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
-    <div fxLayout='column'>
+    <div fxLayout="column">
       <mat-form-field appearance="outline" class="little">
         <mat-label>Ville</mat-label>
-        <input type="text" matInput formControlName='name'>
+        <input type="text" matInput formControlName="name" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="medium">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName='description' rows='10'></textarea>
+        <textarea matInput formControlName="description" rows="10"></textarea>
       </mat-form-field>
-      <mat-form-field appearance="outline" class='little'>
+      <mat-form-field appearance="outline" class="little">
         <mat-label>État</mat-label>
-        <mat-select formControlName='opinion' (selectionChange)='onOpinionChange($event)'>
-          <mat-option *ngFor="let opinion of Opinion | keyvalue" [value]='opinion.value'>{{opinion.value}}</mat-option>
+        <mat-select
+          formControlName="opinion"
+          (selectionChange)="onOpinionChange($event)"
+        >
+          <mat-option
+            *ngFor="let opinion of Opinion | keyvalue"
+            [value]="opinion.value"
+            >{{ opinion.value }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </div>
     <mat-divider></mat-divider>
 
-    <mat-form-field appearance="outline" class='little'>
+    <mat-form-field appearance="outline" class="little">
       <mat-label>Date de début</mat-label>
-      <input matInput [matDatepicker]="picker1" formControlName="startingDate">
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        formControlName="startingDate"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
-    <mat-form-field appearance="outline" class='little'>
+    <mat-form-field appearance="outline" class="little">
       <mat-label>Date de fin</mat-label>
-      <input matInput [matDatepicker]="picker2" formControlName="endingDate">
+      <input matInput [matDatepicker]="picker2" formControlName="endingDate" />
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="outline" class="medium">
       <mat-label>Plat favoris</mat-label>
-      <input type="text" matInput formControlName='favoritePlate' ng-disabled='notVisited()'>
+      <input
+        type="text"
+        matInput
+        formControlName="favoritePlate"
+        ng-disabled="notVisited()"
+      />
     </mat-form-field>
     <mat-divider></mat-divider>
-    <button type="submit" color='primary' mat-flat-button [disabled]='!this.travelForm.valid'>
+    <button
+      type="submit"
+      color="primary"
+      mat-flat-button
+      [disabled]="!this.travelForm.valid"
+    >
       Ajouter
     </button>
   </form>
-
 </div>

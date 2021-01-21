@@ -11,23 +11,29 @@ export class Travel {
   public endingTripDate?: Moment;
   public favoritePlate?: string;
 
-  public constructor(id: string, countryName: string, description: string, opinion: Opinion, startingTripDate: Moment, endingTripDate: Moment, favoritePlate: string) {
+  public constructor(
+    id: string,
+    countryName: string,
+    description: string,
+    opinion: Opinion,
+    startingTripDate: Moment,
+    endingTripDate: Moment,
+    favoritePlate: string
+  ) {
     this.countryName = countryName;
     this.description = description;
     this.opinion = opinion;
     this.id = id;
-    if(!startingTripDate && !endingTripDate) {
+    if (!startingTripDate && !endingTripDate) {
       this.endingTripDate = undefined;
       this.startingTripDate = undefined;
       this.visited = false;
       this.favoritePlate = undefined;
-    }
-    else {
+    } else {
       this.startingTripDate = startingTripDate;
       this.endingTripDate = endingTripDate;
       this.favoritePlate = favoritePlate;
       this.visited = true;
     }
   }
-
 }
