@@ -9,7 +9,7 @@
   <div class="travels" fxLayout="row wrap" fxLayoutGap="0.5%">
     <mat-card
       class="travel"
-      *ngFor="let travel of travels"
+      *ngFor="let travel of travels$ | async"
       fxFlex="1 0 calc(33.3% - 0.5%)"
     >
       <mat-card-header>

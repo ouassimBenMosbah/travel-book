@@ -6,7 +6,7 @@ import { TravelDataService } from '../core/services/travel-data.service';
 @Component({
   selector: 'app-travel-details',
   templateUrl: './travel-details.component.html',
-  styleUrls: ['./travel-details.component.scss']
+  styleUrls: ['./travel-details.component.scss'],
 })
 export class TravelDetailsComponent implements OnInit {
   public travel!: Travel;
@@ -21,14 +21,14 @@ export class TravelDetailsComponent implements OnInit {
   ngOnInit(): void {
     const travelId = this.route.snapshot.params.id;
     if (travelId) {
-      this.travelService.getDetails(travelId).subscribe(data => {
+      this.travelService.getDetails(travelId).subscribe((data) => {
         this.travel = data;
         this.loading = false;
       });
     }
   }
 
-  returnToList() {
+  public returnToList(): void {
     this.router.navigate(['list']);
   }
 }

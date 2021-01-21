@@ -9,12 +9,30 @@ import { TravelDataService } from '../core/services/travel-data.service';
 @Component({
   selector: 'app-travel-edit',
   templateUrl: './travel-edit.component.html',
-  styleUrls: ['./travel-edit.component.scss']
+  styleUrls: ['./travel-edit.component.scss'],
 })
 export class TravelEditComponent implements OnInit {
   Opinion = Opinion;
   travel!: Travel;
   loading = false;
+
+  travelForm = this.fb.group(
+    {
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      opinion: [null, Validators.required],
+      startingDate: [''],
+      endingDate: [''],
+      favoritePlate: [''],
+    },
+    {
+      validators: [
+        this.endingDateConditionallyRequired,
+        this.startingDateConditionallyRequired,
+        this.favoritePlateConditionallyRequired,
+      ],
+    }
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +44,7 @@ export class TravelEditComponent implements OnInit {
   ngOnInit(): void {
     const travelId = this.route.snapshot.params.id;
     if (travelId) {
-      this.travelService.getDetails(travelId).subscribe(data => {
+      this.travelService.getDetails(travelId).subscribe((data) => {
         this.travel = data;
         this.loading = false;
         this.initForm();
@@ -34,8 +52,8 @@ export class TravelEditComponent implements OnInit {
     }
   }
 
-  private initForm() {
-    this.travelForm.controls['name'].setValue(this.travel.countryName);
+  private initForm(): void {
+    this.travelForm.get('name')?.setValue(this.travel.countryName);
     this.travelForm.controls['description'].setValue(this.travel.description);
     this.travelForm.controls['opinion'].setValue(this.travel.opinion);
     if (
@@ -59,66 +77,48 @@ export class TravelEditComponent implements OnInit {
     }
   }
 
-  travelForm = this.fb.group(
-    {
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      opinion: [null, Validators.required],
-      startingDate: [''],
-      endingDate: [''],
-      favoritePlate: ['']
-    },
-    {
-      validators: [
-        this.endingDateConditionallyRequired,
-        this.startingDateConditionallyRequired,
-        this.favoritePlateConditionallyRequired
-      ]
-    }
-  );
-
-  endingDateConditionallyRequired(formGroup: FormGroup) {
+  private endingDateConditionallyRequired(formGroup: FormGroup) {
     if (formGroup.value.opinion !== Opinion.wishToVisit) {
       return Validators.required(formGroup.controls.endingDate)
         ? {
-            endingDateConditionallyRequired: true
+            endingDateConditionallyRequired: true,
           }
         : null;
     }
     return null;
   }
 
-  startingDateConditionallyRequired(formGroup: FormGroup) {
+  private startingDateConditionallyRequired(formGroup: FormGroup) {
     if (formGroup.value.opinion !== Opinion.wishToVisit) {
       return Validators.required(formGroup.controls.startingDate)
         ? {
-            startingDateConditionallyRequired: true
+            startingDateConditionallyRequired: true,
           }
         : null;
     }
     return null;
   }
 
-  favoritePlateConditionallyRequired(formGroup: FormGroup) {
+  private favoritePlateConditionallyRequired(formGroup: FormGroup) {
     if (formGroup.value.opinion !== Opinion.wishToVisit) {
       return Validators.required(formGroup.controls.favoritePlate)
         ? {
-            favoritePlateConditionallyRequired: true
+            favoritePlateConditionallyRequired: true,
           }
         : null;
     }
     return null;
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     const data = this.travelForm.value;
     console.log(data);
     this.travelService.updateTravel(this.travel.id, data);
     this.router.navigate(['list']);
   }
 
-  onOpinionChange(event: MatSelectChange) {
-    let selectedOpinion = event.value;
+  public onOpinionChange(event: MatSelectChange): void {
+    const selectedOpinion = event.value;
     if (selectedOpinion === Opinion.wishToVisit) {
       this.travelForm.controls['favoritePlate'].disable();
       this.travelForm.controls['endingDate'].disable();
@@ -130,7 +130,7 @@ export class TravelEditComponent implements OnInit {
     }
   }
 
-  returnToList() {
+  public returnToList(): void {
     this.router.navigate(['list']);
   }
 }
